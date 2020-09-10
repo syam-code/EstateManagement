@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cnb_unselectedColor="#fff"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/akun"
+        android:title="Akun"
+        android:icon="@drawable/icons8_person_1"
+        app:cnb_iconColor="#11998E"
+        app:cnb_textColor="#11998E"
+        app:cnb_backgroundColor="#FFFFFF"/>
+
+    <item
+        android:id="@+id/beranda"
+        android:title="Beranda"
+        android:icon="@drawable/icons8_home"
+        app:cnb_iconColor="#11998E"
+        app:cnb_textColor="#11998E"
+        app:cnb_backgroundColor="#FFFFFF"/>
+
+    <item
+        android:id="@+id/berita"
+        android:title="Berita"
+        android:icon="@drawable/icons8_newspaper"
+        app:cnb_iconColor="#11998E"
+        app:cnb_textColor="#11998E"
+        app:cnb_backgroundColor="#FFFFFF"/>
+</menu>
