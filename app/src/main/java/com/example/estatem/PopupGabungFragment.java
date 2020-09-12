@@ -3,22 +3,19 @@ package com.example.estatem;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
+import fr.tvbarthel.lib.blurdialogfragment.SupportBlurDialogFragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SetorHafalanFragment#newInstance} factory method to
+ * Use the {@link PopupGabungFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SetorHafalanFragment extends Fragment {
-
-    private Button btnGabung;
-
+public class PopupGabungFragment extends SupportBlurDialogFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +26,7 @@ public class SetorHafalanFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SetorHafalanFragment() {
+    public PopupGabungFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +36,11 @@ public class SetorHafalanFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SetorHafalanFragment.
+     * @return A new instance of fragment PopupGabungFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SetorHafalanFragment newInstance(String param1, String param2) {
-        SetorHafalanFragment fragment = new SetorHafalanFragment();
+    public static PopupGabungFragment newInstance(String param1, String param2) {
+        PopupGabungFragment fragment = new PopupGabungFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,26 +61,34 @@ public class SetorHafalanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_setor_hafalan, container, false);
-
-        btnGabung = root.findViewById(R.id.btn_gabung);
-
-        btnGabung.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupGabungFragment popupGabungFragment = new PopupGabungFragment();
-                popupGabungFragment.show(getFragmentManager(),popupGabungFragment.getClass().getSimpleName());
-
-                FragmentManager fragmentManager;
-                fragmentManager = getFragmentManager();
-                
-                RecordFragment recordFragment = new RecordFragment();
-                fragmentManager.beginTransaction().replace(R.id.fragment_container, recordFragment).commit();
-
-
-            }
-        });
-
-        return root;
+        return inflater.inflate(R.layout.fragment_popup_gabung, container, false);
     }
+
+    //Costumize
+    @Override
+    protected float getDownScaleFactor() {
+        return 4.0f;
+    }
+
+    @Override
+    protected int getBlurRadius() {
+        return 1;
+    }
+
+    @Override
+    protected boolean isDimmingEnable() {
+        return true;
+    }
+
+    @Override
+    protected boolean isDebugEnable() {
+        return false;
+    }
+
+    @Override
+    protected boolean isRenderScriptEnable() {
+        return false;
+    }
+
+
 }

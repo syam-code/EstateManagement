@@ -17,14 +17,64 @@
             android:orientation="horizontal"
             android:background="@drawable/rounded_fragment"
             android:layout_marginTop="0dp"
-            android:gravity="center">
+            android:gravity="center_vertical">
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icons8_microphone"
-                android:background="@drawable/rounded_button"
-                android:padding="15dp"/>
+                android:orientation="vertical"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="50dp">
+
+                <Spinner
+                    android:id="@+id/customIconSpinner"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:spinnerMode="dialog"
+                    android:background="@drawable/spinner_background" />
+
+                <Spinner
+                    android:id="@+id/customIconSpinner2"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:spinnerMode="dialog"
+                    android:background="@drawable/spinner_background" />
+
+                <Spinner
+                    android:id="@+id/customIconSpinner3"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:spinnerMode="dialog"
+                    android:background="@drawable/spinner_background" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <Chronometer
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:padding="5dp"
+                    android:layout_marginBottom="25dp"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icons8_microphone"
+                    android:background="@drawable/rounded_button"
+                    android:padding="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginEnd="0dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
