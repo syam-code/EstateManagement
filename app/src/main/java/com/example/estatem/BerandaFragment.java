@@ -72,7 +72,10 @@ public class BerandaFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
+                FragmentManager fragmentManager;
+                fragmentManager = getFragmentManager();
+                SetorHafalanFragment setorHafalanFragment = new SetorHafalanFragment();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, setorHafalanFragment).commit();
 
             }
         });

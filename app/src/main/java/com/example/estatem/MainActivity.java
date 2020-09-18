@@ -38,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = null;
                 switch (id){
                     case R.id.beranda:
-                        fragment = new SetorHafalanFragment();
+                        fragment = new BerandaFragment();
                         break;
                     case R.id.akun:
                         fragment = new AkunFragment();
                         break;
                     case R.id.berita:
-                        fragment = new RecordFragment();
+                        fragment = new BeritaFragment();
                         break;
                 }
 
