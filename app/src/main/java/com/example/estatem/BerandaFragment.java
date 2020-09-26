@@ -2,6 +2,7 @@ package com.example.estatem;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -19,6 +20,7 @@ public class BerandaFragment extends Fragment {
 
     private Button btnSetorHafalan;
     private FragmentManager fragmentManager;
+    private CardView cardHafalan;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,19 +68,18 @@ public class BerandaFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_beranda, container, false);
 
-        btnSetorHafalan = root.findViewById(R.id.btn_setor_hafalan);
+        cardHafalan = root.findViewById(R.id.card_hafalan);
 
-        btnSetorHafalan.setOnClickListener(new View.OnClickListener() {
+        cardHafalan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 FragmentManager fragmentManager;
                 fragmentManager = getFragmentManager();
                 SetorHafalanFragment setorHafalanFragment = new SetorHafalanFragment();
                 fragmentManager.beginTransaction().replace(R.id.fragment_container, setorHafalanFragment).commit();
-
             }
         });
+
 
         return root;
     }

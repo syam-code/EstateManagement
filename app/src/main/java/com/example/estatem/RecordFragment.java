@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.service.autofill.OnClickAction;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,13 +40,19 @@ public class RecordFragment extends Fragment implements AdapterView.OnItemSelect
     Spinner customSpinner, customSpinner2, customSpinner3;
     ArrayList<CustomItem> customList, customList2, customList3;
     int width = 150; //set according to your use
-    ImageView imgRecord, imgStop, imgRepeat, imgPlay;
+    ImageView imgRecord, imgStop, imgRepeat, imgPlay, imgPause;
     Button btnKirim;
     TextView txtKetRec;
     String pathSave = "";
     MediaRecorder mediaRecorder;
     MediaPlayer mediaPlayer;
     Chronometer timerRecord;
+
+    private boolean isPlaying = false;
+
+    SeekBar playerSeekbar;
+    Handler seekbarHandler;
+    Runnable updateSeekbar;
 
     final int REQUEST_PERMISSION_CODE = 1000;
 
@@ -61,9 +69,11 @@ public class RecordFragment extends Fragment implements AdapterView.OnItemSelect
         imgStop = root.findViewById(R.id.img_stop);
         imgRepeat = root.findViewById(R.id.img_repeat);
         imgPlay = root.findViewById(R.id.img_play);
+        imgPause = root.findViewById(R.id.img_pause);
         btnKirim = root.findViewById(R.id.btn_kirim);
         txtKetRec = root.findViewById(R.id.txt_ket_rec);
         timerRecord = root.findViewById(R.id.timer_record);
+        playerSeekbar = root.findViewById(R.id.player_seekbar);
 
         customSpinner = root.findViewById(R.id.customIconSpinner);
         customList = getCustomList();
@@ -100,6 +110,7 @@ public class RecordFragment extends Fragment implements AdapterView.OnItemSelect
                     imgRecord.setVisibility(View.GONE);
                     btnKirim.setVisibility(View.VISIBLE);
                     txtKetRec.setVisibility(View.GONE);
+                    playerSeekbar.setVisibility(View.VISIBLE);
 
                     timerRecord.setBase(SystemClock.elapsedRealtime());
                     timerRecord.start();
@@ -140,6 +151,10 @@ public class RecordFragment extends Fragment implements AdapterView.OnItemSelect
         imgPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                imgPause.setVisibility(View.VISIBLE);
+                imgPlay.setVisibility(View.GONE);
+
                 mediaPlayer = new MediaPlayer();
                 try {
                     mediaPlayer.setDataSource(pathSave);
@@ -149,7 +164,50 @@ public class RecordFragment extends Fragment implements AdapterView.OnItemSelect
                 }
 
                 mediaPlayer.start();
+
+                isPlaying = true;
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        stopAudio();
+                    }
+                });
+
+                playerSeekbar.setMax(mediaPlayer.getDuration());
+
+                seekbarHandler = new Handler();
+                updateRunnable();
+                seekbarHandler.postDelayed(updateSeekbar, 0);
+
                 Toast.makeText(getActivity(), "Playing...", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        imgPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgPlay.setVisibility(View.VISIBLE);
+                imgPause.setVisibility(View.GONE);
+                pauseAudio();
+            }
+        });
+
+        playerSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int progress = seekBar.getProgress();
+                mediaPlayer.seekTo(progress);
+                resumeAudio();
             }
         });
 
@@ -161,6 +219,8 @@ public class RecordFragment extends Fragment implements AdapterView.OnItemSelect
                 imgPlay.setVisibility(View.GONE);
                 imgRepeat.setVisibility(View.GONE);
                 btnKirim.setVisibility(View.GONE);
+                imgPause.setVisibility(View.GONE);
+                playerSeekbar.setVisibility(View.GONE);
                 txtKetRec.setVisibility(View.VISIBLE);
 
                 timerRecord.setBase(SystemClock.elapsedRealtime());
@@ -173,6 +233,38 @@ public class RecordFragment extends Fragment implements AdapterView.OnItemSelect
         });
 
         return root;
+    }
+
+    private void stopAudio() {
+        //Stop The Audio
+        imgPlay.setVisibility(View.VISIBLE);
+        imgPause.setVisibility(View.GONE);
+        isPlaying = false;
+        mediaPlayer.stop();
+        seekbarHandler.removeCallbacks(updateSeekbar);
+    }
+
+    private void pauseAudio() {
+        mediaPlayer.pause();
+        imgPlay.setVisibility(View.VISIBLE);
+        isPlaying = false;
+        seekbarHandler.removeCallbacks(updateSeekbar);
+    }
+
+    private void resumeAudio() {
+        mediaPlayer.start();
+        updateRunnable();
+        seekbarHandler.postDelayed(updateSeekbar, 0);
+    }
+
+    private void updateRunnable() {
+        updateSeekbar = new Runnable() {
+            @Override
+            public void run() {
+                playerSeekbar.setProgress(mediaPlayer.getCurrentPosition());
+                seekbarHandler.postDelayed(this, 500);
+            }
+        };
     }
 
     private void setupMediaRecorder() {

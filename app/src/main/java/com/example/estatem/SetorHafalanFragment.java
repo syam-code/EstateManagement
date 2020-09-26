@@ -1,14 +1,18 @@
 package com.example.estatem;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,15 +75,34 @@ public class SetorHafalanFragment extends Fragment {
         btnGabung.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupGabungFragment popupGabungFragment = new PopupGabungFragment();
-                popupGabungFragment.show(getFragmentManager(),popupGabungFragment.getClass().getSimpleName());
 
-                FragmentManager fragmentManager;
-                fragmentManager = getFragmentManager();
-                
-                RecordFragment recordFragment = new RecordFragment();
-                fragmentManager.beginTransaction().replace(R.id.fragment_container, recordFragment).commit();
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setIcon(R.drawable.houses_rafiki_1_);
+                alert.setTitle("Konfirmasi");
+                alert.setMessage("Anda yakin untuk bergabung dengan program Hafidz Quran ?");
+                alert.setPositiveButton("Iya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getActivity(), "Anda Berhasil Gabung!", Toast.LENGTH_SHORT).show();
+                        PopupGabungFragment popupGabungFragment = new PopupGabungFragment();
+                        popupGabungFragment.show(getFragmentManager(),popupGabungFragment.getClass().getSimpleName());
 
+                        FragmentManager fragmentManager;
+                        fragmentManager = getFragmentManager();
+
+                        RecordFragment recordFragment = new RecordFragment();
+                        fragmentManager.beginTransaction().replace(R.id.fragment_container, recordFragment).commit();
+
+                    }
+                });
+                alert.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                alert.show();
 
             }
         });
