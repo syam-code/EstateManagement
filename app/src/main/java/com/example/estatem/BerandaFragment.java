@@ -21,6 +21,11 @@ public class BerandaFragment extends Fragment {
     private Button btnSetorHafalan;
     private FragmentManager fragmentManager;
     private CardView cardHafalan;
+    private CardView cardListrik;
+    private CardView cardAir;
+    private CardView cardCicilan;
+
+    private CardView cardComplain;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,7 +74,6 @@ public class BerandaFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_beranda, container, false);
 
         cardHafalan = root.findViewById(R.id.card_hafalan);
-
         cardHafalan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +81,52 @@ public class BerandaFragment extends Fragment {
                 fragmentManager = getFragmentManager();
                 SetorHafalanFragment setorHafalanFragment = new SetorHafalanFragment();
                 fragmentManager.beginTransaction().replace(R.id.fragment_container, setorHafalanFragment).commit();
+            }
+        });
+
+        cardListrik = root.findViewById(R.id.card_listrik);
+        cardListrik.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager;
+                fragmentManager = getFragmentManager();
+                PembayaranListrikFragment pembayaranListrikFragment = new PembayaranListrikFragment();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, pembayaranListrikFragment).commit();
+            }
+        });
+
+        cardAir = root.findViewById(R.id.card_air);
+        cardAir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager;
+                fragmentManager = getFragmentManager();
+                PembayaranAirFragment pembayaranAirFragment = new PembayaranAirFragment();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, pembayaranAirFragment).commit();
+            }
+        });
+
+
+        cardCicilan = root.findViewById(R.id.card_ciclian);
+        cardCicilan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager;
+                fragmentManager = getFragmentManager();
+                PembayaranCicilanFragment pembayaranCicilanFragment = new PembayaranCicilanFragment();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, pembayaranCicilanFragment).commit();
+            }
+        });
+
+
+        cardComplain = root.findViewById(R.id.card_complain);
+        cardComplain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager;
+                fragmentManager = getFragmentManager();
+                ComplaintFragment complaintFragment = new ComplaintFragment();
+                fragmentManager.beginTransaction().replace(R.id.fragment_container, complaintFragment).commit();
             }
         });
 

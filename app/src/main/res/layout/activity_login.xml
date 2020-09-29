@@ -29,6 +29,8 @@
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/textView14"
+                android:onClick="onClick"
+                android:clickable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|center_horizontal|center_vertical"
@@ -92,6 +94,7 @@
 
         <Button
             android:id="@+id/button3"
+            android:onClick="myClickHandler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextTextPersonName4"
@@ -100,10 +103,12 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_button_abubabu"
             android:textColor="#fff"
-            android:text="Sign up" />
+            android:text="Sign in" />
 
         <TextView
             android:id="@+id/textView13"
+            android:onClick="onClick"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button3"
