@@ -7,4 +7,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="spinner_style">
+        <item name="android:background">@drawable/background_spinner</item>
+    </style>
+
+    <style name="spinner_style_bank">
+        <item name="android:background">@drawable/backgorun_spinner_bank</item>
+    </style>
 </resources>
