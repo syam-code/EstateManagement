@@ -54,6 +54,7 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:background="@color/colorPrimaryDark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -64,6 +65,7 @@
                 <TextView
                     android:id="@+id/publishedAt1"
                     android:layout_width="wrap_content"
+                    android:textColor="#fff"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_bold"
@@ -73,7 +75,10 @@
                     android:textSize="14sp" />
 
                 <TextView
+
                     android:id="@+id/title1"
+                    android:textColor="#fff"
+                    android:maxLines="5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
@@ -145,10 +150,13 @@
                 android:layout_centerInParent="true"
                 android:layout_toEndOf="@id/rl_imgList"
                 android:orientation="vertical"
+                android:background="@color/colorPrimaryDark"
                 android:padding="5dp">
 
                 <TextView
                     android:id="@+id/publishedAt"
+                    android:textColor="#fff"
+                    android:maxLines="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -160,6 +168,8 @@
 
                 <TextView
                     android:id="@+id/title"
+                    android:textColor="#fff"
+                    android:maxLines="5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
@@ -229,10 +239,13 @@
                     android:layout_centerInParent="true"
                     android:layout_toEndOf="@id/rl_imgList12"
                     android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
                     android:padding="5dp">
 
                     <TextView
                         android:id="@+id/publishedAt12"
+                        android:textColor="#fff"
+                        android:maxLines="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -244,6 +257,8 @@
 
                     <TextView
                         android:id="@+id/title12"
+                        android:textColor="#fff"
+                        android:maxLines="5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
@@ -315,6 +330,7 @@
                     android:layout_centerInParent="true"
                     android:layout_toEndOf="@id/rl_imgList4"
                     android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
                     android:padding="5dp">
 
                     <TextView
@@ -324,6 +340,8 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/poppins_bold"
                         android:singleLine="true"
+                        android:textColor="#fff"
+                        android:maxLines="1"
                         android:text="Judul Sebuah berita"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textSize="14sp" />
@@ -334,6 +352,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
                         android:singleLine="false"
+                        android:textColor="#fff"
+                        android:maxLines="5"
                         android:text="Untuk memasukkan semua data Anda ke daftar, Anda harus memperluas class RecyclerView.Adapter. Objek ini membuat tampilan untuk item, dan mengganti konten sebagian tampilan dengan item data baru ketika item asli tidak lagi terlihat."
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textSize="12sp" />
