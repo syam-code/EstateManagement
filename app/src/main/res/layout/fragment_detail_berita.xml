@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailBeritaFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_margin="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/coronavirus_delivery_preventions_amico_1_" />
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="18sp"
+        android:layout_marginLeft="4dp"
+        android:id="@+id/textView19"
+        android:layout_below="@id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:maxLines="1"
+        android:text="Judul dari berita" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_login"
+            >
+        <TextView
+            android:id="@+id/textView20"
+            android:textColor="#fff"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Getting the latest news and up-to-date feeds on various topics is the need of many. Which is why, many smartphone users prefer to install news app which can allow them to follow latest happenings in the topic of interest. If you are planning to develop an Android news app for users or for personal use, then we have selected the right kind of news app templates below. Using these ready-made android applications with source code can help you save lot of money and time in creating your own news app." />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
